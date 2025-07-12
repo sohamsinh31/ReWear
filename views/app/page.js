@@ -24,7 +24,7 @@ export default function Home() {
     setTheme(storedTheme);
 
     if (!token) {
-      router.replace("/auth"); // Redirect to login if not authenticated
+      router.replace("/auth/login");
     } else {
       setAuthenticated(true);
     }

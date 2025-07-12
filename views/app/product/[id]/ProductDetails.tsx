@@ -68,6 +68,63 @@ export default function ProductDetails({ product }: { product: any }) {
           {product.description}
         </p>
 
+        <div
+          style={{
+            position: 'relative',               // ⬅️ lets us absolutely‑position the icon
+            fontSize: '1.1rem',
+            color: '#fff',
+            lineHeight: '1.6',
+            marginBottom: '2rem',
+            padding: '1rem 3.5rem 1rem 1rem',   // extra right‑padding so text doesn’t collide with icon
+            borderRadius: '12px',
+            border: '1px solid rgba(255, 255, 255, 0.2)',
+            background: 'rgba(255, 255, 255, 0.1)',
+            backdropFilter: 'blur(10px)',
+            WebkitBackdropFilter: 'blur(10px)',
+            boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
+          }}
+        >
+          <p style={{ margin: 0, color: 'black' }}>
+            <strong>Condition:</strong> <br />
+            <strong>Title:</strong> Levi’s Vintage Denim Jacket – Size M, Classic Blue <br />
+            <strong>Description:</strong> Add a timeless staple to your wardrobe with this vintage Levi’s denim jacket. Lightly worn and in great shape, this jacket brings effortless style to any outfit. <br />
+            <strong>Condition:</strong> Gently used, no stains or rips <br />
+            <strong>Size:</strong> Medium <br />
+            <strong>Material:</strong> 100 % Cotton <br />
+            <strong>Color:</strong> Classic Blue <br />
+            <strong>Details:</strong> Button‑up front, two chest pockets, slightly faded for a true vintage look <br />
+            <strong>Defects:</strong> Minimal fraying on cuffs (see photo)
+          </p>
+
+          {/* ----- AI icon (bottom‑right) ----- */}
+          <div
+            onClick={() => console.log('Open AI helper')}
+            title="Ask AI about this item"
+            style={{
+              position: 'absolute',
+              bottom: '0.75rem',
+              right: '0.75rem',
+              width: '36px',
+              height: '36px',
+              borderRadius: '50%',
+              background: 'orange',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              boxShadow: '0 2px 10px rgba(0,0,0,0.25)',
+              cursor: 'pointer',
+            }}
+          >
+            <Image
+              src="/ai.png"   // 🔁 point to your actual icon
+              alt="AI Assistant"
+              width={18}
+              height={18}
+            />
+          </div>
+        </div>
+
+
         {/* Uploader Info */}
         <div
           style={{
@@ -85,10 +142,10 @@ export default function ProductDetails({ product }: { product: any }) {
             alt="Uploader"
             width={50}
             height={50}
-            style={{ borderRadius: '50%',color: '#555' }}
+            style={{ borderRadius: '50%', color: '#555' }}
           />
           <div>
-            <p style={{ margin: 0, fontWeight: 600 , color: '#555' }}>{uploader.name}</p>
+            <p style={{ margin: 0, fontWeight: 600, color: '#555' }}>{uploader.name}</p>
             <p style={{ margin: 0, fontSize: '0.85rem', color: '#555' }}>
               Member since {uploader.memberSince}
             </p>
@@ -104,6 +161,16 @@ export default function ProductDetails({ product }: { product: any }) {
           }}
         >
           Status: {status}
+        </p>
+
+        <p
+          style={{
+            fontWeight: 'bold',
+
+            marginBottom: '1rem',
+          }}
+        >
+          Estimated Points(beta): 100
         </p>
 
         {/* Actions */}

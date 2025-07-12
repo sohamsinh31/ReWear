@@ -24,6 +24,6 @@ export const navItems = [
   {
     icon: <User size={24} />,
     label: "Profile",
-    onClick: () => handleNavClick("/Profile"),
+    onClick: () => handleNavClick("/profile"),
   },
 ];
