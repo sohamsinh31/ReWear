@@ -11,12 +11,12 @@ interface ProductCardProps {
   image: string
 }
 
-export default function ProductCard({ id, name, category, description, image }: ProductCardProps) {
+export default function ProductCard({ id, name, category, description, images }: ProductCardProps) {
   const router = useRouter()
 
   return (
     <div className={styles.card} onClick={() => router.push(`/product/${id}`)}>
-      <img src={image} alt={name} className={styles.cardImage} />
+      <img src={images[0]} alt={name} className={styles.cardImage} />
       <div className={styles.cardContent}>
         <h3 className={styles.cardTitle}>{name}</h3>
         <p className={styles.cardCategory}>{category}</p>
