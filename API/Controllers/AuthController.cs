@@ -1,5 +1,9 @@
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using ReWear.Context;
 using ReWear.Models;
 using ReWear.Models.VM;
@@ -11,10 +15,12 @@ namespace ReWear.Controllers
     public class AuthController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
+        private readonly IConfiguration _config;
 
-        public AuthController(ApplicationDbContext context)
+        public AuthController(ApplicationDbContext context, IConfiguration configuration)
         {
             _context = context;
+            _config = configuration;
         }
 
         [HttpPost("login")]
@@ -32,16 +38,27 @@ namespace ReWear.Controllers
             if (!user.IsActive)
                 return Forbid("User account is inactive.");
 
+            var claims = new[]
+                {
+                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                    new Claim("Userid", user.UserId.ToString()),
+                    new Claim("UserName", user.Name)
+                };
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
+            var signIn = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+            var token = new JwtSecurityToken(
+            issuer: _config["Jwt:Issuer"],
+            audience: _config["Jwt:Audience"],
+            claims: claims,
+            expires: DateTime.UtcNow.AddDays(1),
+            signingCredentials: signIn
+            );
             return Ok(new
             {
-                message = "Login successful",
-                user = new
-                {
-                    user.UserId,
-                    user.Email,
-                    user.Role,
-                    user.Points
-                }
+                success = true,
+                message = "Login Success",
+                UserData = user,
+                token = new JwtSecurityTokenHandler().WriteToken(token)
             });
         }
 
