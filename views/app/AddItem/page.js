@@ -4,6 +4,9 @@ import TopNavbar from '../components/TopBar'
 import BottomNav from '../components/BottomBar'
 import { navItems } from '../components/NavItems'
 import AddItemPage from './AddItem'
+import Cookies from "js-cookie";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 const page = () => {
     const router = useRouter();

@@ -43,7 +43,7 @@ const AuthPage = () => {
             }, 1500);
 
         } catch (err) {
-            toast.error("Login failed: " + err.message);
+            toast.error("Login failed: Invalid Credentials");
         }
     };
 
