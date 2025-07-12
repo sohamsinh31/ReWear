@@ -38,7 +38,7 @@ export default function ProductDetails({ product }: { product: any }) {
         }}
       >
         {/* Header */}
-        <h1 style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>{product.name}</h1>
+        <h1 style={{ fontSize: '2rem', marginBottom: '0.5rem', color: 'black' }}>{product.name}</h1>
         <p style={{ color: '#666', marginBottom: '1rem' }}>Category: {product.category}</p>
 
         {/* Image Gallery */}

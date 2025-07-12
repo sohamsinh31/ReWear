@@ -1,5 +1,9 @@
 "use client";
 import React, { useState } from "react";
+import { toast } from 'react-hot-toast'
+import Cookies from "js-cookie";
+import { useRouter } from 'next/navigation';
+
 
 const AuthPage = () => {
     const [isRegistering, setIsRegistering] = useState(false);
@@ -9,29 +13,40 @@ const AuthPage = () => {
         email: "",
         password: "",
         address: "",
-        profileImage: File
+        imageFile: File
     });
+
+    const router = useRouter();
+
 
     const API_BASE = process.env.NEXT_PUBLIC_BACKAND;
 
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const res = await fetch(`${API_BASE}/login`, {
+            const res = await fetch(`${API_BASE}/api/auth/login`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(loginData),
             });
+
             const data = await res.json();
+            if (!res.ok) throw new Error(data?.message || "Login failed");
 
-            if (!res.ok) throw new Error(data);
+            Cookies.set("token", data.token, { expires: 7 });
+            Cookies.set("role", data.userData.role, { expires: 7 });
 
-            alert(`Welcome ${data.name}`);
-            // TODO: redirect or store token
+            toast.success(`Welcome ${data.userData.name}`);
+
+            setTimeout(() => {
+                router.push("/"); // Redirect to dashboard page
+            }, 1500);
+
         } catch (err) {
-            alert("Login failed: " + err.message);
+            toast.error("Login failed: " + err.message);
         }
     };
+
 
     const handleRegister = async (e) => {
         e.preventDefault();
@@ -41,11 +56,11 @@ const AuthPage = () => {
             formData.append("email", registerData.email);
             formData.append("password", registerData.password);
             formData.append("address", registerData.address);
-            if (registerData.profileImage) {
-                formData.append("profileImage", registerData.profileImage);
+            if (registerData.imageFile) {
+                formData.append("imageFile", registerData.imageFile);
             }
 
-            const res = await fetch(`${API_BASE}/register`, {
+            const res = await fetch(`${API_BASE}/api/auth/register`, {
                 method: "POST",
                 body: formData,
             });
@@ -157,7 +172,7 @@ const AuthPage = () => {
                             type="file"
                             accept="image/*"
                             style={inputStyle}
-                            onChange={(e) => setRegisterData({ ...registerData, profileImage: e.target.files[0] })}
+                            onChange={(e) => setRegisterData({ ...registerData, imageFile: e.target.files[0] })}
                         />
                         <button type="submit" style={buttonStyle}>Register</button>
                         <button type="button" onClick={() => setIsRegistering(false)} style={toggleStyle}>Back to Login</button>

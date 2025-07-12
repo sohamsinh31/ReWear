@@ -12,6 +12,7 @@ namespace ReWear.Context
 
         public DbSet<User> Users { get; set; }
         public DbSet<Item> Items { get; set; }
+        public DbSet<OrderRequest> OrderRequests { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

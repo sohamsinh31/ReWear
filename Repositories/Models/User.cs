@@ -20,7 +20,7 @@ namespace ReWear.Models
 
         public string Role { get; set; } = "User";
 
-        public string ImageUrl { get; set; } = null;
+        public string? ImageUrl { get; set; } = null;
 
         [NotMapped]
         public IFormFile? ImageFile { get; set; }
