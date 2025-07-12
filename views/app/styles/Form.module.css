@@ -1,0 +1,47 @@
+.input,
+select {
+  color: #222 !important;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 0.75rem;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  appearance: none;
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: #666;
+  opacity: 1;
+}
+
+select:invalid {
+  color: #666 !important;
+}
+
+select option {
+  color: #222;
+}
+
+select option[disabled] {
+  color: #666 !important;
+  background-color: #fff;
+}
+
+.textarea {
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 100%;
+  min-height: 100px;
+  margin-bottom: 1rem;
+  resize: vertical;
+}
+
+.label {
+  margin: 0.5rem 0 0.25rem;
+  font-weight: 500;
+  color: #333;
+}

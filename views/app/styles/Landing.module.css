@@ -265,3 +265,34 @@
   display: block;
   margin-top: 4rem;
 }
+
+
+.primary {
+  background-color: #4caf50;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.primary:hover {
+  background-color: #43a047;
+}
+
+.secondary {
+  background-color: white;
+  color: #4caf50;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid #4caf50;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.secondary:hover {
+  background-color: #e8f5e9;
+}

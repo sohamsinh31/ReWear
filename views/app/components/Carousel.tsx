@@ -1,3 +1,4 @@
+// components/Carousel.tsx
 'use client'
 
 import styles from '../styles/Landing.module.css'
@@ -6,7 +7,7 @@ import { useEffect, useState } from 'react'
 const images = [
   '/images/clothes-laptop-bed-arrangement-high-angle.jpg',
   '/images/high-angle-clothes-bed-fast-fashion.jpg',
-  '/images/medium-shot-smiley-woman-with-clothes.jpg',
+  '/images/medium-shot-smiley-woman-with-clothes.jpg'
 ]
 
 export default function Carousel() {
@@ -15,16 +16,16 @@ export default function Carousel() {
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % images.length)
-    }, 3000)
+    }, 4000)
     return () => clearInterval(interval)
   }, [])
 
   return (
-    <div className={styles.carousel}>
+    <div className={styles.carouselWrapper}>
       <img
         src={images[index]}
         alt="Featured Clothing"
-        className={styles.carouselImage}
+        className={styles.fullWidthCarouselImage}
       />
     </div>
   )
