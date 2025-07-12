@@ -38,7 +38,7 @@ export default function ProductDetails({ product }: { product: any }) {
         }}
       >
         {/* Header */}
-        <h1 style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>{product.name}</h1>
+        <h1 style={{ fontSize: '2rem', marginBottom: '0.5rem' , color: '#555' }}>{product.name}</h1>
         <p style={{ color: '#666', marginBottom: '1rem' }}>Category: {product.category}</p>
 
         {/* Image Gallery */}
@@ -85,10 +85,10 @@ export default function ProductDetails({ product }: { product: any }) {
             alt="Uploader"
             width={50}
             height={50}
-            style={{ borderRadius: '50%' }}
+            style={{ borderRadius: '50%',color: '#555' }}
           />
           <div>
-            <p style={{ margin: 0, fontWeight: 600 }}>{uploader.name}</p>
+            <p style={{ margin: 0, fontWeight: 600 , color: '#555' }}>{uploader.name}</p>
             <p style={{ margin: 0, fontSize: '0.85rem', color: '#555' }}>
               Member since {uploader.memberSince}
             </p>

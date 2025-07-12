@@ -9,9 +9,10 @@ interface ProductCardProps {
   category: string
   description: string
   image: string
+  pointsRequired: number
 }
 
-export default function ProductCard({ id, name, category, description, images }: ProductCardProps) {
+export default function ProductCard({ id, name, category, description, images , pointsRequired }: ProductCardProps) {
   const router = useRouter()
 
   return (
@@ -21,6 +22,7 @@ export default function ProductCard({ id, name, category, description, images }:
         <h3 className={styles.cardTitle}>{name}</h3>
         <p className={styles.cardCategory}>{category}</p>
         <p className={styles.cardDescription}>{description}</p>
+        <span className={styles.badge}>{pointsRequired} pts</span>
       </div>
     </div>
   )
