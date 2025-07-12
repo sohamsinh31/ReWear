@@ -11,12 +11,10 @@ export default function Home() {
 
   return (
     <main className={styles.container}>
-      {/* Cart Summary */}
       <div className={styles.cartHeader}>
         <span role="img" aria-label="cart">🛒</span> {cart.length} item(s)
       </div>
 
-      {/* Hero Section */}
       <section className={styles.hero}>
         <h1 className={styles.title}>ReWear</h1>
         <p className={styles.subtitle}>
@@ -29,13 +27,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Carousel */}
       <section className={styles.carouselSection}>
         <h2 className={styles.carouselTitle}>Featured Items</h2>
         <Carousel />
       </section>
 
-      {/* Product Cards */}
       <section className={styles.products}>
         <h2 className={styles.carouselTitle}>Available Products</h2>
         <div className={styles.grid}>
