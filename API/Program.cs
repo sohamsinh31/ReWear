@@ -1,21 +1,29 @@
 using Microsoft.EntityFrameworkCore;
+using ReWear.Context;
+using ReWear.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddOpenApi();
-
-var app = builder.Build();
+builder.Services.AddControllers(); // ✅ Add this
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Configure the HTTP request pipeline.
+var app = builder.Build();
+
+// Configure middleware
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
 
+app.UseAuthorization();
+
+app.MapControllers();
 
 app.Run();
